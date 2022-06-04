@@ -1,0 +1,121 @@
+.navbar {
+  align-items: center;
+  box-shadow: 0px 15px 10px rgba(0, 0, 0, 0.5);
+  display: flex;
+  height: 60px;
+  justify-content: space-between;
+  left: 0;
+  position: fixed;
+  padding: 0 3rem;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+
+  .logo {
+    height: 80%;
+    position: relative;
+    width: 80px;
+
+    img {
+      transition: all 0.3s ease-in-out;
+    }
+
+    &:hover {
+      opacity: 0.7;
+      transform: scale(1.1);
+      img {
+        transform: rotate(360deg);
+      }
+    }
+  }
+
+  .navigation {
+    align-items: center;
+    display: flex;
+
+    a {
+      border-radius: 5px;
+      color: #222;
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-right: 2rem;
+      padding: 0.5rem 1rem;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        background-color: #ff0000;
+        color: #faf2f2;
+        transform: scale(1.1);
+      }
+    }
+
+    .search {
+      position: relative;
+
+      input,
+      button {
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
+        border: none;
+        border-bottom: 2px solid transparent;
+        border-radius: 5px;
+        font-size: 1.5rem;
+        padding: 0.3rem 0.5rem;
+        transition: all 0.3s ease-in-out;
+      }
+
+      input {
+        background-color: rgba($color: #222, $alpha: 0.2);
+        color: #222;
+        width: 100%;
+
+        &:hover,
+        &:focus {
+          background-color: rgba($color: #222, $alpha: 0.1);
+          border-color: #ff0000;
+          outline: none;
+        }
+      }
+
+      button {
+        background-color: #ff0000;
+        color: #faf2f2;
+        cursor: pointer;
+        position: absolute;
+        right: 0;
+        top: 0;
+
+        &:hover {
+          background-color: #faf2f2;
+          border-color: #ff0000;
+          color: #ff0000;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 43.688rem) {
+  .navbar {
+    height: auto;
+    flex-direction: column;
+    padding: 0.5rem 1rem;
+
+    .logo {
+      height: 60px;
+      margin-bottom: 1rem;
+    }
+
+    .navigation {
+      width: 100%;
+      justify-content: space-between;
+
+      a {
+        margin-right: 1rem;
+      }
+
+      .search {
+        width: 80%;
+      }
+    }
+  }
+}
