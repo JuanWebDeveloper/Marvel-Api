@@ -26,3 +26,15 @@ li,
 input {
   font-family: "Inter", sans-serif;
 }
+
+p {
+  color: #222;
+  font-size: 1.25rem;
+  margin: 0;
+  margin-top: 5px;
+
+  span {
+    color: #ff0000;
+    font-weight: 500;
+  }
+}
