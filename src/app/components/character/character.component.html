@@ -1,0 +1,28 @@
+<div class="character">
+  <div class="character-content">
+    <div class="character-image">
+      <img src="assets/image/logo.png" alt="Name" width="100%" height="100%" />
+    </div>
+    <div class="character-info">
+      <ul class="tabs">
+        <li
+          class="tab"
+          *ngFor="let tab of tabs"
+          (click)="onTabSelected(tab.title)"
+          [ngClass]="{ tabActive: tabSelected === tab.title }"
+        >
+          <i class="fas fa-{{ tab.icon }}"></i> <span>{{ tab.title }}</span>
+        </li>
+      </ul>
+      <div class="tab-content" *ngIf="tabSelected === 'Info'">
+        <h1>Info</h1>
+      </div>
+      <div class="tab-content" *ngIf="tabSelected === 'Comics'">
+        <h1>Comics</h1>
+      </div>
+      <div class="tab-content" *ngIf="tabSelected === 'Series'">
+        <h1>Series</h1>
+      </div>
+    </div>
+  </div>
+</div>

@@ -3,9 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 
 //? Import of the necessary components for the configuration of the routes.
 import { HomeComponent } from './components/home/home.component';
+import { CharacterComponent } from './components/character/character.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: 'character/:id', component: CharacterComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
