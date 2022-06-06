@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
+
 import { Character } from '../models/character.model';
+import { Comic } from '../models/comic.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiToCharactersMapper {
+  //? Mapping of the data brought by the getCharacters service.
   public map(apiCharacters: any): Character[] {
     return apiCharacters.data.results.map((apiCharacter: any) => {
       const character: Character = {
@@ -20,6 +23,7 @@ export class ApiToCharactersMapper {
     });
   }
 
+  //? Mapping of the data brought by the getCharacter service.
   public mapOne(apiCharacter: any): Character {
     const result = apiCharacter.data.results[0];
 
@@ -73,7 +77,8 @@ export class ApiToCharactersMapper {
     return character;
   }
 
-  public mapComic(apiComic: any): any {
+  //? Mapping of the data brought by the getComic service.
+  public mapComic(apiComic: any): Comic {
     const result = apiComic.data.results[0];
 
     return {
@@ -85,7 +90,6 @@ export class ApiToCharactersMapper {
         extension: result.thumbnail.extension,
       },
       creators: {
-        available: result.creators.available,
         items: result.creators.items.map((creator: any) => {
           return {
             name: creator.name,

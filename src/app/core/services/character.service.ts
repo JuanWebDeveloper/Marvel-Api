@@ -2,8 +2,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 
-import { environment } from 'src/environments/environment';
+//? Models.
 import { Character } from '../models/character.model';
+import { Comic } from '../models/comic.model';
+
+import { environment } from 'src/environments/environment';
 import { ApiToCharactersMapper } from '../mappers/api-to-characters.mapper';
 
 @Injectable({
@@ -22,6 +25,7 @@ export class CharacterService {
     });
   }
 
+  //? Service to obtain the data of various characters.
   getCharacters(): Observable<Character[]> {
     return this.http
       .get(`${environment.apiUrl}characters${environment.requestParams}`, {
@@ -34,6 +38,7 @@ export class CharacterService {
       );
   }
 
+  //? Service to fetch the data of a character.
   getCharacter(id: number): Observable<Character> {
     return this.http
       .get(
@@ -47,7 +52,8 @@ export class CharacterService {
       );
   }
 
-  getComic(idComic: string): Observable<any> {
+  //? Service to fetch the data of a comic.
+  getComic(idComic: string): Observable<Comic> {
     return this.http
       .get(
         `${environment.apiUrl}comics/${idComic}${environment.requestParams}`,
