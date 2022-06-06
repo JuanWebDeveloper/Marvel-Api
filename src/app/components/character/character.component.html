@@ -57,7 +57,10 @@
 
         <div *ngIf="character.comics.items.length >= 1; else noAvailable">
           <ul>
-            <li *ngFor="let comic of character.comics.items">
+            <li
+              *ngFor="let comic of character.comics.items"
+              (click)="seeComic(comic.resourceURI)"
+            >
               {{ comic.name }}
             </li>
           </ul>

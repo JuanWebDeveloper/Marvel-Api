@@ -7,6 +7,7 @@ import { FooterComponent } from '../shared/footer/footer.component';
 import { CardComponent } from '../shared/card/card.component';
 import { HomeComponent } from './home/home.component';
 import { CharacterComponent } from './character/character.component';
+import { ComicComponent } from './comic/comic.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { CharacterComponent } from './character/character.component';
     CardComponent,
     HomeComponent,
     CharacterComponent,
+    ComicComponent,
   ],
   exports: [
     NavbarComponent,

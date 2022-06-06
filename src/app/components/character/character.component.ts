@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { CharacterService } from '../../core/services/character.service';
 import { Character } from '../../core/models/character.model';
@@ -23,7 +23,8 @@ export class CharacterComponent implements OnInit {
 
   constructor(
     private characterService: CharacterService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {
     this.activatedRoute.params.subscribe((params) => {
       this.id = params['id'];
@@ -38,7 +39,11 @@ export class CharacterComponent implements OnInit {
       .subscribe((character: Character) => (this.character = character));
   }
 
-  onTabSelected(tab: string): void {
+  public onTabSelected(tab: string): void {
     this.tabSelected = tab;
+  }
+
+  public seeComic(url: string): void {
+    this.router.navigate(['/comic', url.split('/').pop()]);
   }
 }

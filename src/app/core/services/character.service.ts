@@ -24,7 +24,7 @@ export class CharacterService {
 
   getCharacters(): Observable<Character[]> {
     return this.http
-      .get(`${environment.apiUrl}${environment.requestParams}`, {
+      .get(`${environment.apiUrl}characters${environment.requestParams}`, {
         headers: this.headers,
       })
       .pipe(
@@ -36,19 +36,25 @@ export class CharacterService {
 
   getCharacter(id: number): Observable<Character> {
     return this.http
-      .get(`${environment.apiUrl}/${id}${environment.requestParams}`, {
-        headers: this.headers,
-      })
+      .get(
+        `${environment.apiUrl}characters/${id}${environment.requestParams}`,
+        {
+          headers: this.headers,
+        }
+      )
       .pipe(
         map((response: any) => this.apiToCharactersMapper.mapOne(response))
       );
   }
 
-  getComic(urlComic: string): Observable<any> {
+  getComic(idComic: string): Observable<any> {
     return this.http
-      .get(`${urlComic}${environment.requestParams}`, {
-        headers: this.headers,
-      })
+      .get(
+        `${environment.apiUrl}comics/${idComic}${environment.requestParams}`,
+        {
+          headers: this.headers,
+        }
+      )
       .pipe(
         map((response: any) => this.apiToCharactersMapper.mapComic(response))
       );
