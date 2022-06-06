@@ -1,7 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { CharacterService } from 'src/app/core/services/character.service';
+import { ComicService } from 'src/app/core/services/comic.service';
+import { Comic } from 'src/app/core/models/comic.model';
 
 @Component({
   selector: 'marvel-comic',
@@ -10,10 +11,21 @@ import { CharacterService } from 'src/app/core/services/character.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ComicComponent implements OnInit {
+  public id: number | any;
+  public comic: Comic | any;
+
   constructor(
-    private characterService: CharacterService,
+    private comicService: ComicService,
     private activatedRoute: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.activatedRoute.params.subscribe(({ id }) => {
+      this.id = id;
+    });
+
+    this.comicService
+      .getComic(this.id)
+      .subscribe((comic) => (this.comic = comic));
+  }
 }

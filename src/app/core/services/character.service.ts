@@ -2,12 +2,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 
-//? Models.
-import { Character } from '../models/character.model';
-import { Comic } from '../models/comic.model';
-
 import { environment } from 'src/environments/environment';
 import { ApiToCharactersMapper } from '../mappers/api-to-characters.mapper';
+import { Character } from '../models/character.model';
 
 @Injectable({
   providedIn: 'root',
@@ -28,12 +25,15 @@ export class CharacterService {
   //? Service to obtain the data of various characters.
   getCharacters(): Observable<Character[]> {
     return this.http
-      .get(`${environment.apiUrl}characters${environment.requestParams}`, {
-        headers: this.headers,
-      })
+      .get(
+        `${environment.apiUrl}characters${environment.requestParams}&limit=60&orderBy=name`,
+        {
+          headers: this.headers,
+        }
+      )
       .pipe(
         map((response: any) => {
-          return this.apiToCharactersMapper.map(response);
+          return this.apiToCharactersMapper.mapCharacters(response);
         })
       );
   }
@@ -48,21 +48,9 @@ export class CharacterService {
         }
       )
       .pipe(
-        map((response: any) => this.apiToCharactersMapper.mapOne(response))
-      );
-  }
-
-  //? Service to fetch the data of a comic.
-  getComic(idComic: string): Observable<Comic> {
-    return this.http
-      .get(
-        `${environment.apiUrl}comics/${idComic}${environment.requestParams}`,
-        {
-          headers: this.headers,
-        }
-      )
-      .pipe(
-        map((response: any) => this.apiToCharactersMapper.mapComic(response))
+        map((response: any) =>
+          this.apiToCharactersMapper.mapCharacter(response)
+        )
       );
   }
 }

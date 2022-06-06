@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 
 import { Character } from '../models/character.model';
-import { Comic } from '../models/comic.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiToCharactersMapper {
   //? Mapping of the data brought by the getCharacters service.
-  public map(apiCharacters: any): Character[] {
+  public mapCharacters(apiCharacters: any): Character[] {
     return apiCharacters.data.results.map((apiCharacter: any) => {
       const character: Character = {
         id: apiCharacter.id,
@@ -24,7 +23,7 @@ export class ApiToCharactersMapper {
   }
 
   //? Mapping of the data brought by the getCharacter service.
-  public mapOne(apiCharacter: any): Character {
+  public mapCharacter(apiCharacter: any): Character {
     const result = apiCharacter.data.results[0];
 
     const character: Character = {
@@ -75,35 +74,5 @@ export class ApiToCharactersMapper {
     };
 
     return character;
-  }
-
-  //? Mapping of the data brought by the getComic service.
-  public mapComic(apiComic: any): Comic {
-    const result = apiComic.data.results[0];
-
-    return {
-      title: result.title,
-      description: result.description,
-      modified: result.modified,
-      thumbnail: {
-        path: result.thumbnail.path,
-        extension: result.thumbnail.extension,
-      },
-      creators: {
-        items: result.creators.items.map((creator: any) => {
-          return {
-            name: creator.name,
-          };
-        }),
-      },
-      characters: {
-        items: result.characters.items.map((character: any) => {
-          return {
-            resourceURI: character.resourceURI,
-            name: character.name,
-          };
-        }),
-      },
-    };
   }
 }
