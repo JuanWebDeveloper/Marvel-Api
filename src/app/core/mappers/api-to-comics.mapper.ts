@@ -18,10 +18,12 @@ export class ApiToComicsMapper {
         path: result.thumbnail.path,
         extension: result.thumbnail.extension,
       },
+      price: result.prices[0].price,
       creators: {
         items: result.creators.items.map((creator: any) => {
           return {
             name: creator.name,
+            role: creator.role,
           };
         }),
       },

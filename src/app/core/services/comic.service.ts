@@ -24,6 +24,10 @@ export class ComicService {
 
   //? Service to fetch the data of a comic.
   getComic(idComic: string): Observable<Comic> {
+    console.log(
+      `${environment.apiUrl}comics/${idComic}${environment.requestParams}`
+    );
+
     return this.http
       .get(
         `${environment.apiUrl}comics/${idComic}${environment.requestParams}`,

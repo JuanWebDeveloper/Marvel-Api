@@ -1,8 +1,8 @@
 import {
   Component,
   OnInit,
-  ChangeDetectionStrategy,
   OnDestroy,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 

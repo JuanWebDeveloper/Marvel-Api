@@ -6,9 +6,11 @@ export interface Comic {
     path: string;
     extension: string;
   };
+  price: string;
   creators: {
     items: {
       name: string;
+      role: string;
     };
   };
   characters: {
