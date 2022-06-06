@@ -8,6 +8,7 @@ import { CardComponent } from '../shared/card/card.component';
 import { HomeComponent } from './home/home.component';
 import { CharacterComponent } from './character/character.component';
 import { ComicComponent } from './comic/comic.component';
+import { SeriesComponent } from './series/series.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ComicComponent } from './comic/comic.component';
     HomeComponent,
     CharacterComponent,
     ComicComponent,
+    SeriesComponent,
   ],
   exports: [
     NavbarComponent,

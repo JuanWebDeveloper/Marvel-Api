@@ -66,7 +66,7 @@
             <li
               class="pointer"
               *ngFor="let comic of character.comics.items"
-              (click)="seeComic(comic.resourceURI)"
+              (click)="redirect('comic', comic.resourceURI)"
             >
               {{ comic.name }}
             </li>
@@ -86,8 +86,12 @@
           *ngIf="character.series.items.length >= 1; else noAvailable"
         >
           <ul>
-            <li class="pointer" *ngFor="let series of character.series.items">
-              {{ series.name }}
+            <li
+              class="pointer"
+              *ngFor="let serie of character.series.items"
+              (click)="redirect('serie', serie.resourceURI)"
+            >
+              {{ serie.name }}
             </li>
           </ul>
         </div>

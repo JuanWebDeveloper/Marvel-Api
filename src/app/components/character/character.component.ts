@@ -62,8 +62,8 @@ export class CharacterComponent implements OnInit, OnDestroy {
     this.router.navigate(['/home']);
   }
 
-  public seeComic(url: string): void {
-    this.router.navigate(['/comic', url.split('/').pop()], {
+  public redirect(url: string, id: string): void {
+    this.router.navigate(['/comic', id.split('/').pop()], {
       queryParams: { ciwc: this.id },
     });
   }
