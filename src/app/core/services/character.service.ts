@@ -43,4 +43,14 @@ export class CharacterService {
         map((response: any) => this.apiToCharactersMapper.mapOne(response))
       );
   }
+
+  getComic(urlComic: string): Observable<any> {
+    return this.http
+      .get(`${urlComic}${environment.requestParams}`, {
+        headers: this.headers,
+      })
+      .pipe(
+        map((response: any) => this.apiToCharactersMapper.mapComic(response))
+      );
+  }
 }

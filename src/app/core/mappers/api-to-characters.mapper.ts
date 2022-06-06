@@ -21,18 +21,20 @@ export class ApiToCharactersMapper {
   }
 
   public mapOne(apiCharacter: any): Character {
+    const result = apiCharacter.data.results[0];
+
     const character: Character = {
-      id: apiCharacter.data.results[0].id,
-      name: apiCharacter.data.results[0].name,
-      description: apiCharacter.data.results[0].description,
-      modified: apiCharacter.data.results[0].modified,
+      id: result.id,
+      name: result.name,
+      description: result.description,
+      modified: result.modified,
       thumbnail: {
-        path: apiCharacter.data.results[0].thumbnail.path,
-        extension: apiCharacter.data.results[0].thumbnail.extension,
+        path: result.thumbnail.path,
+        extension: result.thumbnail.extension,
       },
       comics: {
-        available: apiCharacter.data.results[0].comics.available,
-        items: apiCharacter.data.results[0].comics.items.map((comic: any) => {
+        available: result.comics.available,
+        items: result.comics.items.map((comic: any) => {
           return {
             resourceURI: comic.resourceURI,
             name: comic.name,
@@ -40,8 +42,8 @@ export class ApiToCharactersMapper {
         }),
       },
       series: {
-        available: apiCharacter.data.results[0].series.available,
-        items: apiCharacter.data.results[0].series.items.map((serie: any) => {
+        available: result.series.available,
+        items: result.series.items.map((serie: any) => {
           return {
             resourceURI: serie.resourceURI,
             name: serie.name,
@@ -49,8 +51,8 @@ export class ApiToCharactersMapper {
         }),
       },
       stories: {
-        available: apiCharacter.data.results[0].stories.available,
-        items: apiCharacter.data.results[0].stories.items.map((story: any) => {
+        available: result.stories.available,
+        items: result.stories.items.map((story: any) => {
           return {
             resourceURI: story.resourceURI,
             name: story.name,
@@ -58,8 +60,8 @@ export class ApiToCharactersMapper {
         }),
       },
       events: {
-        available: apiCharacter.data.results[0].events.available,
-        items: apiCharacter.data.results[0].events.items.map((event: any) => {
+        available: result.events.available,
+        items: result.events.items.map((event: any) => {
           return {
             resourceURI: event.resourceURI,
             name: event.name,
@@ -69,5 +71,35 @@ export class ApiToCharactersMapper {
     };
 
     return character;
+  }
+
+  public mapComic(apiComic: any): any {
+    const result = apiComic.data.results[0];
+
+    return {
+      title: result.title,
+      description: result.description,
+      modified: result.modified,
+      thumbnail: {
+        path: result.thumbnail.path,
+        extension: result.thumbnail.extension,
+      },
+      creators: {
+        available: result.creators.available,
+        items: result.creators.items.map((creator: any) => {
+          return {
+            name: creator.name,
+          };
+        }),
+      },
+      characters: {
+        items: result.characters.items.map((character: any) => {
+          return {
+            resourceURI: character.resourceURI,
+            name: character.name,
+          };
+        }),
+      },
+    };
   }
 }
