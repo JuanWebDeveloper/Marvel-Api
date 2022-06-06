@@ -1,4 +1,5 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'marvel-card',
@@ -7,5 +8,13 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardComponent {
-  constructor() {}
+  @Input() public id: number | any;
+  @Input() public name: string | undefined;
+  @Input() public thumbnail: string | undefined;
+
+  constructor(private router: Router) {}
+
+  public seeMore(): void {
+    this.router.navigate(['/character', this.id]);
+  }
 }

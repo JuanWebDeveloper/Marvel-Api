@@ -1,10 +1,12 @@
 <div class="home-page">
   <div class="home-page_content">
-    <marvel-card></marvel-card>
-    <marvel-card></marvel-card>
-    <marvel-card></marvel-card>
-    <marvel-card></marvel-card>
-    <marvel-card></marvel-card>
-    <marvel-card></marvel-card>
+    <marvel-card
+      *ngFor="let character of characters"
+      [id]="character.id"
+      [name]="character.name"
+      [thumbnail]="
+        character.thumbnail.path + '.' + character.thumbnail.extension
+      "
+    ></marvel-card>
   </div>
 </div>

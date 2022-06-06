@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { CharacterService } from '../../core/services/character.service';
 import { Character } from '../../core/models/character.model';
@@ -7,7 +7,6 @@ import { Character } from '../../core/models/character.model';
   selector: 'marvel-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
   public characters: Character[] | undefined;
