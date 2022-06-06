@@ -1,6 +1,6 @@
 <div class="character">
   <div class="character-content">
-    <div class="character-image">
+    <div class="general-image">
       <img
         [src]="character.thumbnail.path + '.' + character.thumbnail.extension"
         [alt]="character.name"
@@ -55,9 +55,13 @@
       <div class="tab-content" *ngIf="tabSelected === 'omics'">
         <h2>Comics Of {{ character.name }}</h2>
 
-        <div *ngIf="character.comics.items.length >= 1; else noAvailable">
+        <div
+          class="lists"
+          *ngIf="character.comics.items.length >= 1; else noAvailable"
+        >
           <ul>
             <li
+              class="pointer"
               *ngFor="let comic of character.comics.items"
               (click)="seeComic(comic.resourceURI)"
             >
@@ -74,9 +78,12 @@
       <div class="tab-content" *ngIf="tabSelected === 'eries'">
         <h2>Series Of {{ character.name }}</h2>
 
-        <div *ngIf="character.series.items.length >= 1; else noAvailable">
+        <div
+          class="lists"
+          *ngIf="character.series.items.length >= 1; else noAvailable"
+        >
           <ul>
-            <li *ngFor="let series of character.series.items">
+            <li class="pointer" *ngFor="let series of character.series.items">
               {{ series.name }}
             </li>
           </ul>
@@ -88,9 +95,13 @@
 
       <div class="tab-content" *ngIf="tabSelected === 'tories'">
         <h2>Stories Of {{ character.name }}</h2>
-        <div *ngIf="character.stories.items.length >= 1; else noAvailable">
+
+        <div
+          class="lists"
+          *ngIf="character.stories.items.length >= 1; else noAvailable"
+        >
           <ul>
-            <li *ngFor="let story of character.stories.items">
+            <li class="pointer" *ngFor="let story of character.stories.items">
               {{ story.name }}
             </li>
           </ul>
@@ -103,9 +114,13 @@
 
       <div class="tab-content" *ngIf="tabSelected === 'vents'">
         <h2>Events Of {{ character.name }}</h2>
-        <div *ngIf="character.events.items.length >= 1; else noAvailable">
+
+        <div
+          class="lists"
+          *ngIf="character.events.items.length >= 1; else noAvailable"
+        >
           <ul>
-            <li *ngFor="let event of character.events.items">
+            <li class="pointer" *ngFor="let event of character.events.items">
               {{ event.name }}
             </li>
           </ul>

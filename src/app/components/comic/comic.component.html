@@ -2,7 +2,7 @@
   <div class="comic-content">
     <h2>{{ comic.title }}</h2>
 
-    <div class="comic-image">
+    <div class="general-image">
       <img
         [src]="comic.thumbnail.path + '.' + comic.thumbnail.extension"
         [alt]="comic.title"
@@ -20,10 +20,9 @@
           comic.description ? comic.description : "No description available."
         }}
       </p>
-      <div>
-        <h4>Creators</h4>
-
+      <div class="lists">
         <div *ngIf="comic.creators.items.length >= 1; else noAvailable">
+          <h4>Creators</h4>
           <ul>
             <li *ngFor="let creator of comic.creators.items">
               {{ creator.name }} - <span>{{ creator.role }}</span>
@@ -35,10 +34,11 @@
           <h4>No creators information available.</h4>
         </ng-template>
       </div>
-      <div>
+      <div class="lists">
         <h4>Characters</h4>
         <ul>
           <li
+            class="pointer"
             *ngFor="let character of comic.characters.items"
             (click)="seeCharacter(character.resourceURI)"
           >
