@@ -1,1 +1,66 @@
-<p>series works!</p>
+<div class="general">
+  <button class="btn-return" (click)="toReturn()">
+    <i class="fa-solid fa-arrow-rotate-left"></i> To Return
+  </button>
+
+  <div class="general-content">
+    <h2>{{ serie.title }}</h2>
+
+    <div class="general-image">
+      <img
+        [src]="serie.thumbnail.path + '.' + serie.thumbnail.extension"
+        [alt]="serie.title"
+        width="100%"
+        height="100%"
+      />
+    </div>
+
+    <div class="general-info">
+      <h3 *ngIf="serie.endYear">
+        The series began on
+        <span>{{ serie.startYear | date: "Y/MMMM/dd" }} </span>
+        and ended <span>{{ serie.endYear | date: "Y/MMMM/dd" }}</span>
+      </h3>
+      <h3 *ngIf="!serie.endYear">
+        The series began on
+        <span>{{ serie.startYear | date: "Y/MMMM/dd" }} </span>
+        and is still ongoing
+      </h3>
+      <p>
+        {{
+          serie.description ? serie.description : "No description available."
+        }}
+      </p>
+      <div class="lists">
+        <div *ngIf="serie.creators.items.length >= 1; else noAvailable">
+          <h4>Creators</h4>
+          <ul>
+            <li *ngFor="let creator of serie.creators.items">
+              {{ creator.name }} - <span>{{ creator.role }}</span>
+            </li>
+          </ul>
+        </div>
+
+        <ng-template #noAvailable>
+          <h4>No creators information available.</h4>
+        </ng-template>
+      </div>
+      <div class="lists">
+        <h4>Characters</h4>
+        <ul>
+          <li
+            class="pointer"
+            *ngFor="let character of serie.characters.items"
+            (click)="seeCharacter(character.resourceURI)"
+          >
+            {{ character.name }}
+          </li>
+        </ul>
+      </div>
+      <h3>
+        last modification of the serie in
+        <span>{{ serie.modified | date: "Y/MMMM/dd" }}</span>
+      </h3>
+    </div>
+  </div>
+</div>

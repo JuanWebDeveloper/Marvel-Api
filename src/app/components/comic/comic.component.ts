@@ -12,7 +12,6 @@ import { Comic } from 'src/app/core/models/comic.model';
 @Component({
   selector: 'marvel-comic',
   templateUrl: './comic.component.html',
-  styleUrls: ['./comic.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ComicComponent implements OnInit, OnDestroy {
@@ -50,7 +49,7 @@ export class ComicComponent implements OnInit, OnDestroy {
     this.router.navigate(['/character', this.ciwc]);
   }
 
-  public seeCharacter(characterUrl: string): void {
-    this.router.navigate(['/character']);
+  public seeCharacter(characterId: string): void {
+    this.router.navigate(['/character', characterId.split('/').pop()]);
   }
 }

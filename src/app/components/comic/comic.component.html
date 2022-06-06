@@ -1,9 +1,9 @@
-<div class="comic">
+<div class="general">
   <button class="btn-return" (click)="toReturn()">
     <i class="fa-solid fa-arrow-rotate-left"></i> To Return
   </button>
 
-  <div class="comic-content">
+  <div class="general-content">
     <h2>{{ comic.title }}</h2>
 
     <div class="general-image">
@@ -15,7 +15,7 @@
       />
     </div>
 
-    <div class="comic-info">
+    <div class="general-info">
       <h3>
         Price of the comic <span>{{ comic.price | currency }}</span>
       </h3>
@@ -50,6 +50,10 @@
           </li>
         </ul>
       </div>
+      <h3>
+        last modification of the comic in
+        <span>{{ comic.modified | date: "Y/MMMM/dd" }}</span>
+      </h3>
     </div>
   </div>
 </div>
