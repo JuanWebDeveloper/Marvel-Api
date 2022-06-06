@@ -1,27 +1,116 @@
 <div class="character">
   <div class="character-content">
     <div class="character-image">
-      <img src="assets/image/logo.png" alt="Name" width="100%" height="100%" />
+      <img
+        [src]="character.thumbnail.path + '.' + character.thumbnail.extension"
+        [alt]="character.name"
+        width="100%"
+        height="100%"
+      />
     </div>
+
     <div class="character-info">
-      <ul class="tabs">
+      <h2>{{ character.name }}</h2>
+      <p>
+        {{
+          character.description
+            ? character.description
+            : "No description available."
+        }}
+      </p>
+      <h3>
+        Number of comics in which I participate:
+        <span>{{ character.comics.available }}</span>
+      </h3>
+      <h3>
+        Number of series in which I participate:
+        <span>{{ character.series.available }}</span>
+      </h3>
+      <h3>
+        Number of stories in which I participate:
+        <span>{{ character.stories.available }}</span>
+      </h3>
+      <h3>
+        Number of events in which I participate:
+        <span>{{ character.events.available }}</span>
+      </h3>
+      <h3 class="modified">
+        Last modified in:
+        <span>{{ character.modified | date: "Y/MMMM/dd" }}</span>
+      </h3>
+    </div>
+
+    <div class="tabs">
+      <ul class="tab-header">
         <li
           class="tab"
           *ngFor="let tab of tabs"
           (click)="onTabSelected(tab.title)"
           [ngClass]="{ tabActive: tabSelected === tab.title }"
         >
-          <i class="fas fa-{{ tab.icon }}"></i> <span>{{ tab.title }}</span>
+          <i class="{{ tab.icon }}"></i> <span>{{ tab.title }}</span>
         </li>
       </ul>
-      <div class="tab-content" *ngIf="tabSelected === 'Info'">
-        <h1>Info</h1>
+
+      <div class="tab-content" *ngIf="tabSelected === 'omics'">
+        <h2>Comics Of {{ character.name }}</h2>
+
+        <div *ngIf="character.comics.items.length >= 1; else noAvailable">
+          <ul>
+            <li *ngFor="let comic of character.comics.items">
+              {{ comic.name }}
+            </li>
+          </ul>
+        </div>
+
+        <ng-template #noAvailable>
+          <h3>No comics available.</h3>
+        </ng-template>
       </div>
-      <div class="tab-content" *ngIf="tabSelected === 'Comics'">
-        <h1>Comics</h1>
+
+      <div class="tab-content" *ngIf="tabSelected === 'eries'">
+        <h2>Series Of {{ character.name }}</h2>
+
+        <div *ngIf="character.series.items.length >= 1; else noAvailable">
+          <ul>
+            <li *ngFor="let series of character.series.items">
+              {{ series.name }}
+            </li>
+          </ul>
+        </div>
+        <ng-template #noAvailable>
+          <h3>No series available.</h3>
+        </ng-template>
       </div>
-      <div class="tab-content" *ngIf="tabSelected === 'Series'">
-        <h1>Series</h1>
+
+      <div class="tab-content" *ngIf="tabSelected === 'tories'">
+        <h2>Stories Of {{ character.name }}</h2>
+        <div *ngIf="character.stories.items.length >= 1; else noAvailable">
+          <ul>
+            <li *ngFor="let story of character.stories.items">
+              {{ story.name }}
+            </li>
+          </ul>
+        </div>
+
+        <ng-template #noAvailable>
+          <h3>No stories available.</h3>
+        </ng-template>
+      </div>
+
+      <div class="tab-content" *ngIf="tabSelected === 'vents'">
+        <h2>Events Of {{ character.name }}</h2>
+        <div *ngIf="character.events.items.length >= 1; else noAvailable">
+          <ul>
+            <li *ngFor="let event of character.events.items">
+              {{ event.name }}
+            </li>
+          </ul>
+        </div>
+
+        <ng-template #noAvailable>
+          <h3>No events available.</h3>
+        </ng-template>
       </div>
     </div>
   </div>

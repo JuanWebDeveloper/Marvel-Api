@@ -12,13 +12,14 @@ import { Character } from '../../core/models/character.model';
 })
 export class CharacterComponent implements OnInit {
   public tabs = [
-    { title: 'Info', icon: 'info' },
-    { title: 'Comics', icon: 'book-open' },
-    { title: 'Series', icon: 'film' },
+    { title: 'omics', icon: 'fa-solid fa-c' },
+    { title: 'eries', icon: 'fa-solid fa-s' },
+    { title: 'tories', icon: 'fa-solid fa-s' },
+    { title: 'vents', icon: 'fa-solid fa-e' },
   ];
   public tabSelected: string | undefined;
   public id: number | any;
-  public character: Character | undefined;
+  character: Character | Character | any;
 
   constructor(
     private characterService: CharacterService,

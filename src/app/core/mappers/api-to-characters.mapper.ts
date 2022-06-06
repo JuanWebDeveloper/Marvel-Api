@@ -21,8 +21,6 @@ export class ApiToCharactersMapper {
   }
 
   public mapOne(apiCharacter: any): Character {
-    console.log(apiCharacter.data.results[0]);
-
     const character: Character = {
       id: apiCharacter.data.results[0].id,
       name: apiCharacter.data.results[0].name,
