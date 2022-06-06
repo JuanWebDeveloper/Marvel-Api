@@ -33,4 +33,14 @@ export class CharacterService {
         })
       );
   }
+
+  getCharacter(id: number): Observable<Character> {
+    return this.http
+      .get(`${environment.apiUrl}/${id}${environment.requestParams}`, {
+        headers: this.headers,
+      })
+      .pipe(
+        map((response: any) => this.apiToCharactersMapper.mapOne(response))
+      );
+  }
 }
