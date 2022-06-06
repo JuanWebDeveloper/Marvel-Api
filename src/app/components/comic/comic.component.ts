@@ -18,6 +18,7 @@ import { Comic } from 'src/app/core/models/comic.model';
 export class ComicComponent implements OnInit, OnDestroy {
   public id: number | any;
   public comic: Comic | any;
+  private ciwc: string | undefined;
 
   constructor(
     private comicService: ComicService,
@@ -26,9 +27,13 @@ export class ComicComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
+
     this.activatedRoute.params.subscribe(({ id }) => {
       this.id = id;
     });
+
+    this.activatedRoute.queryParams.subscribe(({ ciwc }) => (this.ciwc = ciwc));
 
     this.comicService
       .getComic(this.id)
@@ -41,7 +46,11 @@ export class ComicComponent implements OnInit, OnDestroy {
   }
 
   // Method
+  public toReturn(): void {
+    this.router.navigate(['/character', this.ciwc]);
+  }
+
   public seeCharacter(characterUrl: string): void {
-    this.router.navigate(['/character', characterUrl.split('/').pop()]);
+    this.router.navigate(['/character']);
   }
 }

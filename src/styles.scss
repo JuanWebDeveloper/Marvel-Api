@@ -46,6 +46,33 @@ p {
   }
 }
 
+button {
+  background-color: #ff0000;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  color: #faf2f2;
+  cursor: pointer;
+  font-size: 1.25rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease-in-out;
+
+  i {
+    transition: all 0.3s ease-in-out;
+  }
+
+  &:hover {
+    background-color: #faf2f2;
+    border-color: #ff0000;
+    color: #ff0000;
+    transform: scale3d(1.1, 1.1, 1);
+
+    i {
+      transform: rotate(360deg);
+    }
+  }
+}
+
 .lists {
   margin-top: 1rem;
 
@@ -113,8 +140,21 @@ p {
   }
 }
 
+.btn-return {
+  margin-top: 2rem;
+  margin-left: 1rem;
+  position: absolute;
+}
+
 @media (max-width: 43.688rem) {
   .general-image {
     width: 100%;
+  }
+
+  .btn-return {
+    display: block;
+    margin: 0 auto;
+    margin-top: 2rem;
+    position: relative;
   }
 }

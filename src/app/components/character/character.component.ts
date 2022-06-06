@@ -33,6 +33,8 @@ export class CharacterComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
+
     this.tabSelected = this.tabs[0].title;
 
     this.activatedRoute.params.subscribe((params) => {
@@ -56,7 +58,13 @@ export class CharacterComponent implements OnInit, OnDestroy {
     this.tabSelected = tab;
   }
 
+  public toReturn(): void {
+    this.router.navigate(['/home']);
+  }
+
   public seeComic(url: string): void {
-    this.router.navigate(['/comic', url.split('/').pop()]);
+    this.router.navigate(['/comic', url.split('/').pop()], {
+      queryParams: { ciwc: this.id },
+    });
   }
 }
