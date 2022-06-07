@@ -45,13 +45,7 @@ export class ComicComponent implements OnInit, OnDestroy {
   }
 
   // Method
-  public toReturn(): void {
-    this.router.navigate(['/character', this.ciwc]);
-  }
-
   public redirect(url: string, id: string): void {
-    this.router.navigate([url, id.split('/').pop()], {
-      queryParams: { ciwc: this.id },
-    });
+    this.router.navigate([url, id.split('/').pop()]);
   }
 }

@@ -37,13 +37,8 @@ export class StorieComponent implements OnInit {
   }
 
   //? Methods.
-  public toReturn(): void {
-    this.router.navigate(['/home']);
-  }
 
   public redirect(url: string, id: string): void {
-    this.router.navigate([url, id.split('/').pop()], {
-      queryParams: { ciwc: this.id },
-    });
+    this.router.navigate([url, id.split('/').pop()]);
   }
 }
