@@ -90,29 +90,17 @@ button {
 
     li {
       color: #222;
+      cursor: pointer;
       font-size: 1.2rem;
       margin-bottom: 1rem;
       padding-left: 1rem;
+      transition: all 0.3s ease-in-out;
 
       span {
         color: #ff0000;
         font-weight: 600;
+        transition: all 0.3s ease-in-out;
       }
-
-      &:before {
-        background-color: #ff0000;
-        border-radius: 50%;
-        content: "";
-        display: inline-block;
-        height: 10px;
-        margin-right: 0.5rem;
-        width: 10px;
-      }
-    }
-
-    .pointer {
-      cursor: pointer;
-      transition: all 0.3s ease-in-out;
 
       &:hover {
         color: #ff0000;
@@ -124,6 +112,17 @@ button {
         &::before {
           background-color: #222;
         }
+      }
+
+      &:before {
+        background-color: #ff0000;
+        border-radius: 50%;
+        content: "";
+        display: inline-block;
+        height: 10px;
+        margin-right: 0.5rem;
+        transition: all 0.3s ease-in-out;
+        width: 10px;
       }
     }
   }

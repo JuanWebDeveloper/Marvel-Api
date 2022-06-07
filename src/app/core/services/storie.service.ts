@@ -26,7 +26,7 @@ export class StorieService {
   getStorie(idStorie: string): Observable<Storie> {
     return this.http
       .get(
-        `${environment.apiUrl}Stories/${idStorie}${environment.requestParams}`,
+        `${environment.apiUrl}stories/${idStorie}${environment.requestParams}`,
         {
           headers: this.headers,
         }

@@ -108,7 +108,11 @@
           *ngIf="character.stories.items.length >= 1; else noAvailable"
         >
           <ul>
-            <li class="pointer" *ngFor="let story of character.stories.items">
+            <li
+              class="pointer"
+              *ngFor="let story of character.stories.items"
+              (click)="redirect('storie', story.resourceURI)"
+            >
               {{ story.name }}
             </li>
           </ul>

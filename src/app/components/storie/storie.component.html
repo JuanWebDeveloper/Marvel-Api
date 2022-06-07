@@ -1,0 +1,83 @@
+<div class="general">
+  <button class="btn-return" (click)="toReturn()">
+    <i class="fa-solid fa-arrow-rotate-left"></i> To Return
+  </button>
+
+  <div class="general-content">
+    <h2>{{ storie.title }}</h2>
+
+    <div class="general-info">
+      <p>
+        {{
+          storie.description ? storie.description : "No description available."
+        }}
+      </p>
+      <div class="lists">
+        <div *ngIf="storie.creators.items.length >= 1; else noAvailable">
+          <h4>Creators</h4>
+          <ul>
+            <li *ngFor="let creator of storie.creators.items">
+              {{ creator.name }} - <span>{{ creator.role }} </span>
+            </li>
+          </ul>
+        </div>
+
+        <ng-template #noAvailable>
+          <h4>No creators information available.</h4>
+        </ng-template>
+      </div>
+      <div class="lists" *ngIf="storie.characters.items.length">
+        <h4>Characters</h4>
+        <ul>
+          <li
+            *ngFor="let character of storie.characters.items"
+            (click)="redirect('character', character.resourceURI)"
+          >
+            {{ character.name }}
+          </li>
+        </ul>
+      </div>
+
+      <div class="lists" *ngIf="storie.comics.items.length">
+        <h4>Comics</h4>
+        <ul>
+          <li
+            *ngFor="let comic of storie.comics.items"
+            (click)="redirect('comic', comic.resourceURI)"
+          >
+            {{ comic.name }}
+          </li>
+        </ul>
+      </div>
+
+      <div class="lists" *ngIf="storie.series.items.length">
+        <h4>Series</h4>
+        <ul>
+          <li
+            *ngFor="let serie of storie.series.items"
+            (click)="redirect('serie', serie.resourceURI)"
+          >
+            {{ serie.name }}
+          </li>
+        </ul>
+      </div>
+
+      <div class="lists" *ngIf="storie.events.items.length">
+        <h4>Events</h4>
+        <ul>
+          <li
+            *ngFor="let event of storie.events.items"
+            (click)="redirect('event', event.resourceURI)"
+          >
+            {{ event.name }}
+          </li>
+        </ul>
+      </div>
+
+      <h3>
+        last modification of the storie in
+        <span>{{ storie.modified | date: "Y/MMMM/dd" }}</span>
+      </h3>
+    </div>
+  </div>
+</div>

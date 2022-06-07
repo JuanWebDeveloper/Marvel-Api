@@ -14,15 +14,12 @@ export class ApiToStoriesMapper {
       title: result.title,
       description: result.description,
       modified: result.modified,
-      thumbnail: {
-        path: result.thumbnail.path,
-        extension: result.thumbnail.extension,
-      },
       creators: {
         items: result.creators.items.map((creator: any) => {
           return {
-            resourceURI: creator.resourceURI,
             name: creator.name,
+            role: creator.role,
+            resourceURI: creator.resourceURI,
           };
         }),
       },

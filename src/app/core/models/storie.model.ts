@@ -2,15 +2,12 @@ export interface Storie {
   title: string;
   description?: string;
   modified: string;
-  thumbnail?: {
-    path: string;
-    extension: string;
-  };
   creators?: {
     items: [
       {
-        resourceURI: string;
         name: string;
+        role: string;
+        resourceURI: string;
       }
     ];
   };

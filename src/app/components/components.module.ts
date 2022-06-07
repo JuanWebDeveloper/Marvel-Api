@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { CharacterComponent } from './character/character.component';
 import { ComicComponent } from './comic/comic.component';
 import { SeriesComponent } from './series/series.component';
+import { StorieComponent } from './storie/storie.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SeriesComponent } from './series/series.component';
     CharacterComponent,
     ComicComponent,
     SeriesComponent,
+    StorieComponent,
   ],
   exports: [
     NavbarComponent,
