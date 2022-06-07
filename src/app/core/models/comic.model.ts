@@ -11,6 +11,7 @@ export interface Comic {
     items: {
       name: string;
       role: string;
+      resourceURI: string;
     };
   };
   characters: {
@@ -18,5 +19,21 @@ export interface Comic {
       resourceURI: string;
       name: string;
     };
+  };
+  events?: {
+    items: {
+      resourceURI: string;
+      name: string;
+    };
+  };
+  stories?: {
+    items: {
+      resourceURI: string;
+      name: string;
+    };
+  };
+  series?: {
+    resourceURI: string;
+    name: string;
   };
 }

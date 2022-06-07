@@ -24,6 +24,7 @@ export class ApiToComicsMapper {
           return {
             name: creator.name,
             role: creator.role,
+            resourceURI: creator.resourceURI,
           };
         }),
       },
@@ -32,6 +33,26 @@ export class ApiToComicsMapper {
           return {
             resourceURI: character.resourceURI,
             name: character.name,
+          };
+        }),
+      },
+      events: {
+        items: result.events.items.map((event: any) => {
+          return {
+            resourceURI: event.resourceURI,
+            name: event.name,
+          };
+        }),
+      },
+      series: {
+        name: result.series.name,
+        resourceURI: result.series.resourceURI,
+      },
+      stories: {
+        items: result.stories.items.map((storie: any) => {
+          return {
+            resourceURI: storie.resourceURI,
+            name: storie.name,
           };
         }),
       },

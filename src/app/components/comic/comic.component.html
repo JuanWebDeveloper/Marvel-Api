@@ -42,14 +42,44 @@
         <h4>Characters</h4>
         <ul>
           <li
-            class="pointer"
             *ngFor="let character of comic.characters.items"
-            (click)="seeCharacter(character.resourceURI)"
+            (click)="redirect('character', character.resourceURI)"
           >
             {{ character.name }}
           </li>
         </ul>
       </div>
+      <div class="lists" *ngIf="comic.events.items.length">
+        <h4>Events</h4>
+        <ul>
+          <li
+            *ngFor="let event of comic.events.items"
+            (click)="redirect('event', event.resourceURI)"
+          >
+            {{ event.name }}
+          </li>
+        </ul>
+      </div>
+      <div class="lists" *ngIf="comic.stories.items.length">
+        <h4>Stories</h4>
+        <ul>
+          <li
+            *ngFor="let event of comic.stories.items"
+            (click)="redirect('storie', event.resourceURI)"
+          >
+            {{ event.name }}
+          </li>
+        </ul>
+      </div>
+      <div class="lists" *ngIf="comic.series">
+        <h4>Series</h4>
+        <ul>
+          <li (click)="redirect('serie', comic.series.resourceURI)">
+            {{ comic.series.name }}
+          </li>
+        </ul>
+      </div>
+
       <h3>
         last modification of the comic in
         <span>{{ comic.modified | date: "Y/MMMM/dd" }}</span>
