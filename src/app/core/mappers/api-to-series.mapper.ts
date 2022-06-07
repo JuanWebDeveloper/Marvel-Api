@@ -36,6 +36,30 @@ export class ApiToSeriesMapper {
           };
         }),
       },
+      comics: {
+        items: result.comics.items.map((comic: any) => {
+          return {
+            resourceURI: comic.resourceURI,
+            name: comic.name,
+          };
+        }),
+      },
+      stories: {
+        items: result.stories.items.map((storie: any) => {
+          return {
+            resourceURI: storie.resourceURI,
+            name: storie.name,
+          };
+        }),
+      },
+      events: {
+        items: result.events.items.map((event: any) => {
+          return {
+            resourceURI: event.resourceURI,
+            name: event.name,
+          };
+        }),
+      },
     };
   }
 }

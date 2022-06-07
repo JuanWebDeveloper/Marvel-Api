@@ -44,7 +44,9 @@ export class SeriesComponent implements OnInit {
     this.router.navigate(['/character', this.ciwc]);
   }
 
-  public seeCharacter(characterId: string): void {
-    this.router.navigate(['/character', characterId.split('/').pop()]);
+  public redirect(url: string, id: string): void {
+    this.router.navigate([url, id.split('/').pop()], {
+      queryParams: { ciwc: this.id },
+    });
   }
 }
