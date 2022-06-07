@@ -10,6 +10,7 @@ import { CharacterComponent } from './character/character.component';
 import { ComicComponent } from './comic/comic.component';
 import { SeriesComponent } from './series/series.component';
 import { StorieComponent } from './storie/storie.component';
+import { EventComponent } from './event/event.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { StorieComponent } from './storie/storie.component';
     ComicComponent,
     SeriesComponent,
     StorieComponent,
+    EventComponent,
   ],
   exports: [
     NavbarComponent,

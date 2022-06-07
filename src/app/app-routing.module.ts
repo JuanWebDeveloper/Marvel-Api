@@ -7,6 +7,7 @@ import { CharacterComponent } from './components/character/character.component';
 import { ComicComponent } from './components/comic/comic.component';
 import { SeriesComponent } from './components/series/series.component';
 import { StorieComponent } from './components/storie/storie.component';
+import { EventComponent } from './components/event/event.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'comic/:id', component: ComicComponent },
   { path: 'serie/:id', component: SeriesComponent },
   { path: 'storie/:id', component: StorieComponent },
+  { path: 'event/:id', component: EventComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 

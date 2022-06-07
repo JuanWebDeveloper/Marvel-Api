@@ -38,7 +38,7 @@ export class ApiToEventsMapper {
         }),
       },
       comics: {
-        items: result.events.items.map((event: any) => {
+        items: result.comics.items.map((event: any) => {
           return {
             resourceURI: event.resourceURI,
             name: event.name,

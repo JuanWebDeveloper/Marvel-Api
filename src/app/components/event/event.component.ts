@@ -1,20 +1,19 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { SerieService } from '../../core/services/serie.service';
-import { Serie } from '../../core/models/serie.model';
+import { EventService } from 'src/app/core/services/event.service';
 
 @Component({
-  selector: 'marvel-series',
-  templateUrl: './series.component.html',
+  selector: 'marvel-event',
+  templateUrl: './event.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SeriesComponent implements OnInit {
+export class EventComponent implements OnInit {
   public id: number | any;
-  public serie: Serie | any;
+  public event: Event | any;
 
   constructor(
-    private serieService: SerieService,
+    private eventService: EventService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
@@ -26,14 +25,14 @@ export class SeriesComponent implements OnInit {
       this.id = id;
     });
 
-    this.serieService
-      .getSerie(this.id)
-      .subscribe((serie) => (this.serie = serie));
+    this.eventService
+      .getEvent(this.id)
+      .subscribe((event) => (this.event = event));
   }
 
   ngOnDestroy(): void {
     this.id = undefined;
-    this.serie = undefined;
+    this.event = undefined;
   }
 
   // Method

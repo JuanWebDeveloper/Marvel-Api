@@ -1,0 +1,96 @@
+<div class="general">
+  <div class="general-content">
+    <h2>{{ event.title }}</h2>
+
+    <div class="general-image">
+      <img
+        [src]="event.thumbnail.path + '.' + event.thumbnail.extension"
+        [alt]="event.title"
+        width="100%"
+        height="100%"
+      />
+    </div>
+
+    <div class="general-info">
+      <h3 *ngIf="event.end">
+        The events began on
+        <span>{{ event.start | date: "Y/MMMM/dd" }} </span>
+        and ended <span>{{ event.end | date: "Y/MMMM/dd" }}</span>
+      </h3>
+      <h3 *ngIf="!event.end">
+        The events began on
+        <span>{{ event.start | date: "Y/MMMM/dd" }} </span>
+        and is still ongoing
+      </h3>
+      <p>
+        {{
+          event.description ? event.description : "No description available."
+        }}
+      </p>
+      <div class="lists">
+        <div *ngIf="event.creators.items.length >= 1; else noAvailable">
+          <h4>Creators</h4>
+          <ul>
+            <li *ngFor="let creator of event.creators.items">
+              {{ creator.name }} - <span>{{ creator.role }}</span>
+            </li>
+          </ul>
+        </div>
+
+        <ng-template #noAvailable>
+          <h4>No creators information available.</h4>
+        </ng-template>
+      </div>
+      <div class="lists">
+        <h4>Characters</h4>
+        <ul>
+          <li
+            class="pointer"
+            *ngFor="let character of event.characters.items"
+            (click)="redirect('character', character.resourceURI)"
+          >
+            {{ character.name }}
+          </li>
+        </ul>
+      </div>
+      <div class="lists" *ngIf="event.comics.items.length">
+        <h4>Comics</h4>
+        <ul>
+          <li
+            *ngFor="let comic of event.comics.items"
+            (click)="redirect('comic', comic.resourceURI)"
+          >
+            {{ comic.name }}
+          </li>
+        </ul>
+      </div>
+      <div class="lists" *ngIf="event.series.items.length">
+        <h4>Series</h4>
+        <ul>
+          <li
+            *ngFor="let serie of event.series.items"
+            (click)="redirect('serie', serie.resourceURI)"
+          >
+            {{ serie.name }}
+          </li>
+        </ul>
+      </div>
+      <div class="lists" *ngIf="event.stories.items.length">
+        <h4>Stories</h4>
+        <ul>
+          <li
+            *ngFor="let storie of event.stories.items"
+            (click)="redirect('storie', storie.resourceURI)"
+          >
+            {{ storie.name }}
+          </li>
+        </ul>
+      </div>
+
+      <h3>
+        last modification of the event in
+        <span>{{ event.modified | date: "Y/MMMM/dd" }}</span>
+      </h3>
+    </div>
+  </div>
+</div>

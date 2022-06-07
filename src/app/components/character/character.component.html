@@ -128,7 +128,11 @@
           *ngIf="character.events.items.length >= 1; else noAvailable"
         >
           <ul>
-            <li class="pointer" *ngFor="let event of character.events.items">
+            <li
+              class="pointer"
+              *ngFor="let event of character.events.items"
+              (click)="redirect('event', event.resourceURI)"
+            >
               {{ event.name }}
             </li>
           </ul>

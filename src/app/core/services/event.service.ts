@@ -23,7 +23,7 @@ export class EventService {
   }
 
   //? Service to fetch the data of a event.
-  getSerie(idEvent: string): Observable<Event> {
+  getEvent(idEvent: string): Observable<Event> {
     return this.http
       .get(
         `${environment.apiUrl}events/${idEvent}${environment.requestParams}`,
