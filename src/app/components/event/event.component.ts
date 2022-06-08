@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { EventService } from 'src/app/core/services/event.service';
@@ -7,11 +7,11 @@ import { EventService } from 'src/app/core/services/event.service';
 @Component({
   selector: 'marvel-event',
   templateUrl: './event.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EventComponent implements OnInit {
+export class EventComponent implements OnInit, OnDestroy {
   public id: number | any;
   public event: Event | any;
+  public loading: boolean = true;
 
   constructor(
     private eventService: EventService,
@@ -27,14 +27,16 @@ export class EventComponent implements OnInit {
       this.id = id;
     });
 
-    this.eventService
-      .getEvent(this.id)
-      .subscribe((event) => (this.event = event));
+    this.eventService.getEvent(this.id).subscribe((event) => {
+      this.event = event;
+      this.loading = false;
+    });
   }
 
   ngOnDestroy(): void {
     this.id = undefined;
     this.event = undefined;
+    this.loading = true;
   }
 
   // Method

@@ -26,7 +26,7 @@ export class CharacterService {
   getCharacters(): Observable<Character[]> {
     return this.http
       .get(
-        `${environment.apiUrl}characters${environment.requestParams}&limit=60&orderBy=name`,
+        `${environment.apiUrl}characters${environment.requestParams}&limit=100&orderBy=name`,
         {
           headers: this.headers,
         }

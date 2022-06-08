@@ -24,10 +24,6 @@ export class SerieService {
 
   //? Service to fetch the data of a Serie.
   getSerie(idSerie: string): Observable<Serie> {
-    console.log(
-      `${environment.apiUrl}series/${idSerie}${environment.requestParams}`
-    );
-
     return this.http
       .get(
         `${environment.apiUrl}series/${idSerie}${environment.requestParams}`,

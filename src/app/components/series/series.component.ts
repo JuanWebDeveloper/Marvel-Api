@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { SerieService } from '../../core/services/serie.service';
@@ -8,11 +8,11 @@ import { Location } from '@angular/common';
 @Component({
   selector: 'marvel-series',
   templateUrl: './series.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SeriesComponent implements OnInit {
+export class SeriesComponent implements OnInit, OnDestroy {
   public id: number | any;
   public serie: Serie | any;
+  public loading: boolean = true;
 
   constructor(
     private serieService: SerieService,
@@ -28,14 +28,16 @@ export class SeriesComponent implements OnInit {
       this.id = id;
     });
 
-    this.serieService
-      .getSerie(this.id)
-      .subscribe((serie) => (this.serie = serie));
+    this.serieService.getSerie(this.id).subscribe((serie) => {
+      this.serie = serie;
+      this.loading = false;
+    });
   }
 
   ngOnDestroy(): void {
     this.id = undefined;
     this.serie = undefined;
+    this.loading = true;
   }
 
   // Method

@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { StorieService } from '../../core/services/storie.service';
@@ -8,11 +8,11 @@ import { Location } from '@angular/common';
 @Component({
   selector: 'marvel-storie',
   templateUrl: './storie.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class StorieComponent implements OnInit {
+export class StorieComponent implements OnInit, OnDestroy {
   private id: string | any;
   public storie: Storie | any;
+  public loading: boolean = true;
 
   constructor(
     private storieService: StorieService,
@@ -28,14 +28,17 @@ export class StorieComponent implements OnInit {
       this.id = params['id'];
     });
 
-    this.storieService
-      .getStorie(this.id)
-      .subscribe((storie: Storie) => (this.storie = storie));
+    this.storieService.getStorie(this.id).subscribe((storie: Storie) => {
+      this.storie = storie;
+      this.loading = false;
+    });
   }
 
   //? Handling of component disassembly.
   ngOnDestroy(): void {
     this.id = undefined;
+    this.storie = undefined;
+    this.loading = true;
   }
 
   //? Methods.

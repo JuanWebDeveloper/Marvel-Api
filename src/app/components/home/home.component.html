@@ -1,4 +1,6 @@
-<div class="home-page">
+<marvel-loading *ngIf="loading"></marvel-loading>
+
+<div class="home-page" *ngIf="!loading">
   <div class="home-page_content">
     <marvel-card
       *ngFor="let character of characters"

@@ -1,9 +1,4 @@
-import {
-  Component,
-  OnInit,
-  OnDestroy,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ComicService } from 'src/app/core/services/comic.service';
@@ -13,11 +8,11 @@ import { Location } from '@angular/common';
 @Component({
   selector: 'marvel-comic',
   templateUrl: './comic.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ComicComponent implements OnInit, OnDestroy {
   public id: number | any;
   public comic: Comic | any;
+  public loading: boolean = true;
 
   constructor(
     private comicService: ComicService,
@@ -33,14 +28,16 @@ export class ComicComponent implements OnInit, OnDestroy {
       this.id = id;
     });
 
-    this.comicService
-      .getComic(this.id)
-      .subscribe((comic) => (this.comic = comic));
+    this.comicService.getComic(this.id).subscribe((comic) => {
+      this.comic = comic;
+      this.loading = false;
+    });
   }
 
   ngOnDestroy(): void {
     this.id = undefined;
     this.comic = undefined;
+    this.loading = true;
   }
 
   // Method

@@ -13,6 +13,7 @@ import { SeriesComponent } from './series/series.component';
 import { StorieComponent } from './storie/storie.component';
 import { EventComponent } from './event/event.component';
 import { CreatorComponent } from './creator/creator.component';
+import { LoadingComponent } from '../shared/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { CreatorComponent } from './creator/creator.component';
     StorieComponent,
     EventComponent,
     CreatorComponent,
+    LoadingComponent,
   ],
   exports: [
     NavbarComponent,
@@ -33,6 +35,7 @@ import { CreatorComponent } from './creator/creator.component';
     CardComponent,
     HomeComponent,
     CharacterComponent,
+    LoadingComponent,
   ],
   imports: [BrowserModule, RouterModule],
   providers: [],

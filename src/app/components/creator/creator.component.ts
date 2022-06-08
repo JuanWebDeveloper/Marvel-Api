@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -8,11 +8,11 @@ import { Creator } from 'src/app/core/models/creator.model';
 @Component({
   selector: 'marvel-creator',
   templateUrl: './creator.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CreatorComponent implements OnInit {
+export class CreatorComponent implements OnInit, OnDestroy {
   public id: number | any;
   public creator: Creator | any;
+  public loading: boolean = true;
 
   constructor(
     private creatorService: CreatorService,
@@ -28,14 +28,16 @@ export class CreatorComponent implements OnInit {
       this.id = id;
     });
 
-    this.creatorService
-      .getCreator(this.id)
-      .subscribe((creator) => (this.creator = creator));
+    this.creatorService.getCreator(this.id).subscribe((creator) => {
+      this.creator = creator;
+      this.loading = false;
+    });
   }
 
   ngOnDestroy(): void {
     this.id = undefined;
     this.creator = undefined;
+    this.loading = true;
   }
 
   // Method

@@ -13,6 +13,15 @@ body {
   margin: 0;
 }
 
+// Application Scroll Styles
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #ff0000;
+}
+
 h1,
 h2,
 h3,

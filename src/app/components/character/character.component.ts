@@ -1,9 +1,4 @@
-import {
-  Component,
-  OnInit,
-  OnDestroy,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { CharacterService } from '../../core/services/character.service';
@@ -14,7 +9,6 @@ import { Location } from '@angular/common';
   selector: 'marvel-character',
   templateUrl: './character.component.html',
   styleUrls: ['./character.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CharacterComponent implements OnInit, OnDestroy {
   public tabs = [
@@ -26,6 +20,7 @@ export class CharacterComponent implements OnInit, OnDestroy {
   public tabSelected: string | undefined;
   public id: number | any;
   public character: Character | any;
+  public loading: boolean = true;
 
   constructor(
     private characterService: CharacterService,
@@ -45,7 +40,10 @@ export class CharacterComponent implements OnInit, OnDestroy {
 
     this.characterService
       .getCharacter(this.id)
-      .subscribe((character: Character) => (this.character = character));
+      .subscribe((character: Character) => {
+        this.character = character;
+        this.loading = false;
+      });
   }
 
   //? Handling of component disassembly.
@@ -53,6 +51,7 @@ export class CharacterComponent implements OnInit, OnDestroy {
     this.tabSelected = this.tabs[0].title;
     this.id = undefined;
     this.character = undefined;
+    this.loading = true;
   }
 
   //? Methods.

@@ -1,0 +1,32 @@
+.loading {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 55vh;
+  position: relative;
+  padding-top: 3.75rem;
+
+  .loading-cricle {
+    animation: 1.5s linear infinite loading-circle;
+    border: 7px solid #222222af;
+    border-top-color: #ff0000;
+    border-radius: 50%;
+    height: 6rem;
+    width: 6rem;
+    @keyframes loading-circle {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
+}
+
+@media (max-width: 43.688rem) {
+  .loading {
+    padding-top: 8rem;
+  }
+}

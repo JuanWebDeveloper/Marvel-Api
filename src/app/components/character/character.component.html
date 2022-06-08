@@ -1,4 +1,6 @@
-<div class="character">
+<marvel-loading *ngIf="loading"></marvel-loading>
+
+<div class="character" *ngIf="!loading">
   <button class="btn-return" (click)="handleToBack()">
     <i class="fa-solid fa-arrow-rotate-left"></i> To Return
   </button>
