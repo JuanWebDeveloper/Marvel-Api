@@ -1,11 +1,11 @@
 <header class="navbar">
   <div class="logo">
-    <a href="">
+    <a [routerLink]="['home']">
       <img src="assets/image/logo.png" alt="logo" width="100%" height="100%" />
     </a>
   </div>
   <div class="navigation">
-    <a href="">Home</a>
+    <a routerLinkActive="active" [routerLink]="['home']">Home</a>
     <div class="search">
       <input type="text" placeholder="Search..." />
       <button>

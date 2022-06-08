@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { CharacterService } from '../../core/services/character.service';
 import { Character } from '../../core/models/character.model';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'marvel-character',
@@ -29,7 +30,8 @@ export class CharacterComponent implements OnInit, OnDestroy {
   constructor(
     private characterService: CharacterService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -58,7 +60,26 @@ export class CharacterComponent implements OnInit, OnDestroy {
     this.tabSelected = tab;
   }
 
+  public handleToBack(): void {
+    const pathUrl: any = localStorage.getItem('pathUrl');
+    const pathUrlObj = JSON.parse(pathUrl);
+
+    const currentUrl: string = this.location.path().split('/')[1];
+    const currentUrlId: string = this.location.path().split('/')[2];
+    localStorage.setItem(
+      'pathUrl',
+      JSON.stringify({ pathUrl: currentUrl, id: currentUrlId })
+    );
+
+    if (pathUrlObj.id) {
+      this.router.navigate([pathUrlObj.pathUrl, pathUrlObj.id]);
+    } else {
+      this.router.navigate([pathUrlObj.pathUrl]);
+    }
+  }
+
   public redirect(url: string, id: string): void {
+    this.handleToBack();
     this.router.navigate([url, id.split('/').pop()]);
   }
 }

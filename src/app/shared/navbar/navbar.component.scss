@@ -50,6 +50,12 @@
       }
     }
 
+    .active {
+      background-color: #ff0000;
+      color: #faf2f2;
+      transform: scale(1.1);
+    }
+
     .search {
       position: relative;
 

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { SerieService } from '../../core/services/serie.service';
 import { Serie } from '../../core/models/serie.model';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'marvel-series',
@@ -16,7 +17,8 @@ export class SeriesComponent implements OnInit {
   constructor(
     private serieService: SerieService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -37,7 +39,26 @@ export class SeriesComponent implements OnInit {
   }
 
   // Method
+  public handleToBack(): void {
+    const pathUrl: any = localStorage.getItem('pathUrl');
+    const pathUrlObj = JSON.parse(pathUrl);
+
+    const currentUrl: string = this.location.path().split('/')[1];
+    const currentUrlId: string = this.location.path().split('/')[2];
+    localStorage.setItem(
+      'pathUrl',
+      JSON.stringify({ pathUr: currentUrl, id: currentUrlId })
+    );
+
+    if (pathUrlObj.id) {
+      this.router.navigate([pathUrlObj.pathUrl, pathUrlObj.id]);
+    } else {
+      this.router.navigate([pathUrlObj.pathUrl]);
+    }
+  }
+
   public redirect(url: string, id: string): void {
+    this.handleToBack();
     this.router.navigate([url, id.split('/').pop()]);
   }
 }

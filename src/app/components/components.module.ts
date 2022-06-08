@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
 
 //? Import of the components used in the application.
 import { NavbarComponent } from '../shared/navbar/navbar.component';
@@ -31,7 +32,7 @@ import { EventComponent } from './event/event.component';
     HomeComponent,
     CharacterComponent,
   ],
-  imports: [BrowserModule],
+  imports: [BrowserModule, RouterModule],
   providers: [],
 })
 export class ComponentsModule {}
