@@ -12,6 +12,7 @@ import { ComicComponent } from './comic/comic.component';
 import { SeriesComponent } from './series/series.component';
 import { StorieComponent } from './storie/storie.component';
 import { EventComponent } from './event/event.component';
+import { CreatorComponent } from './creator/creator.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { EventComponent } from './event/event.component';
     SeriesComponent,
     StorieComponent,
     EventComponent,
+    CreatorComponent,
   ],
   exports: [
     NavbarComponent,

@@ -1,0 +1,65 @@
+<div class="general">
+  <button class="btn-return" (click)="handleToBack()">
+    <i class="fa-solid fa-arrow-rotate-left"></i> To Return
+  </button>
+  <div class="general-content">
+    <h2>{{ creator.fullName }}</h2>
+
+    <div class="general-image">
+      <img
+        [src]="creator.thumbnail.path + '.' + creator.thumbnail.extension"
+        [alt]="creator.fullName"
+        width="100%"
+        height="100%"
+      />
+    </div>
+
+    <div class="general-info">
+      <div class="lists">
+        <h4>Comics</h4>
+        <ul>
+          <li
+            *ngFor="let comic of creator.comics.items"
+            (click)="redirect('comic', comic.resourceURI)"
+          >
+            {{ comic.name }}
+          </li>
+        </ul>
+      </div>
+      <div class="lists" *ngIf="creator.series">
+        <h4>Series</h4>
+        <ul>
+          <li (click)="redirect('serie', creator.series.resourceURI)">
+            {{ creator.series.name }}
+          </li>
+        </ul>
+      </div>
+      <div class="lists" *ngIf="creator.stories.items.length">
+        <h4>Stories</h4>
+        <ul>
+          <li
+            *ngFor="let storie of creator.stories.items"
+            (click)="redirect('storie', storie.resourceURI)"
+          >
+            {{ storie.name }}
+          </li>
+        </ul>
+      </div>
+      <div class="lists" *ngIf="creator.events.items.length">
+        <h4>Events</h4>
+        <ul>
+          <li
+            *ngFor="let event of creator.events.items"
+            (click)="redirect('event', event.resourceURI)"
+          >
+            {{ event.name }}
+          </li>
+        </ul>
+      </div>
+      <h3>
+        last modification of the creator in
+        <span>{{ creator.modified | date: "Y/MMMM/dd" }}</span>
+      </h3>
+    </div>
+  </div>
+</div>

@@ -27,7 +27,10 @@
         <div *ngIf="comic.creators.items.length >= 1; else noAvailable">
           <h4>Creators</h4>
           <ul>
-            <li *ngFor="let creator of comic.creators.items">
+            <li
+              *ngFor="let creator of comic.creators.items"
+              (click)="redirect('creator', creator.resourceURI)"
+            >
               {{ creator.name }} - <span>{{ creator.role }}</span>
             </li>
           </ul>
@@ -48,14 +51,11 @@
           </li>
         </ul>
       </div>
-      <div class="lists" *ngIf="comic.events.items.length">
-        <h4>Events</h4>
+      <div class="lists" *ngIf="comic.series">
+        <h4>Series</h4>
         <ul>
-          <li
-            *ngFor="let event of comic.events.items"
-            (click)="redirect('event', event.resourceURI)"
-          >
-            {{ event.name }}
+          <li (click)="redirect('serie', comic.series.resourceURI)">
+            {{ comic.series.name }}
           </li>
         </ul>
       </div>
@@ -70,15 +70,17 @@
           </li>
         </ul>
       </div>
-      <div class="lists" *ngIf="comic.series">
-        <h4>Series</h4>
+      <div class="lists" *ngIf="comic.events.items.length">
+        <h4>Events</h4>
         <ul>
-          <li (click)="redirect('serie', comic.series.resourceURI)">
-            {{ comic.series.name }}
+          <li
+            *ngFor="let event of comic.events.items"
+            (click)="redirect('event', event.resourceURI)"
+          >
+            {{ event.name }}
           </li>
         </ul>
       </div>
-
       <h3>
         last modification of the comic in
         <span>{{ comic.modified | date: "Y/MMMM/dd" }}</span>

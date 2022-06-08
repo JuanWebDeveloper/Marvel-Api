@@ -34,7 +34,10 @@
         <div *ngIf="event.creators.items.length >= 1; else noAvailable">
           <h4>Creators</h4>
           <ul>
-            <li *ngFor="let creator of event.creators.items">
+            <li
+              *ngFor="let creator of event.creators.items"
+              (click)="redirect('creator', creator.resourceURI)"
+            >
               {{ creator.name }} - <span>{{ creator.role }}</span>
             </li>
           </ul>

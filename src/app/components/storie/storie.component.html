@@ -15,7 +15,10 @@
         <div *ngIf="storie.creators.items.length >= 1; else noAvailable">
           <h4>Creators</h4>
           <ul>
-            <li *ngFor="let creator of storie.creators.items">
+            <li
+              *ngFor="let creator of storie.creators.items"
+              (click)="redirect('creator', creator.resourceURI)"
+            >
               {{ creator.name }} - <span>{{ creator.role }} </span>
             </li>
           </ul>
